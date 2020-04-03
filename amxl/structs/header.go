@@ -11,10 +11,10 @@ type Header struct {
 	FileSize uint32
 }
 
-func ParseHeader(bs []byte) (Header, uint32) {
+func ParseHeader(buffer *bytes.Buffer) Header {
 	var header Header
-	_ = binary.Read(bytes.NewBuffer(bs), binary.LittleEndian, &header)
-	return header, 8
+	_ = binary.Read(buffer, binary.LittleEndian, &header)
+	return header
 }
 
 func (header Header) String() string {
